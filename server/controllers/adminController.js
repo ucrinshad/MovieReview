@@ -100,7 +100,7 @@ export const adminLogout = async(req,res,next) =>{
     try {
         res.cookie('token');
 
-        res.json({message: "admin logout successfully", data:userProfile})
+        res.json({message: "admin logout successfully", data:adminProfile})
 
 
     } catch (error) {

@@ -11,14 +11,14 @@ const movieSchema = new mongoose.Schema(
         maxLength:50,
     },
     
-        descriptoin:{
+        description:{
             type:String,
             required:true,
             minLength:3,
-            maxLength:100,
+            
         },
-        Duration:{
-            tupe:String,
+        duration:{
+            type:String,
             required:true
         },
         image:{
