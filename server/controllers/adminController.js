@@ -119,3 +119,33 @@ export const checkAdmin = async(req,res,next) =>{
         res.status(error.statuscode || 500).json({message:error.message || 'Internal server error'})
     }
 }
+
+export const updateAdmin = async(req, res, next)=>{
+
+    try {
+        
+
+        const updatedAdmin = await User.findByIdAndUpdate(req.params.id, req.body,{ new: true});
+        
+        if(updateAdmin){
+            res.status(200).json(updatedAdmin);
+        }else{
+            res.status(404).json({ message: " Update not found "})
+        }
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+} 
+export const deleteAdmin = async(req,res,next)=>{
+
+    try {
+        const deletedAdmin = await User.findByIdAndDelete(req.params.id);
+
+        if(deletedAdmin) {
+            res.status(200).json({ message: "asmin deleted successfully"})
+            res.status(404).json({message: "admin not found"})
+        }
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}

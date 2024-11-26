@@ -6,7 +6,7 @@ const router = e.Router();
 
 router.post("/add-review", userAuth,addreview)
 router.get("/get-movie-review", userAuth,getMovieReviews )
-router.get("/get-user-review")
+router.get("/get-user-review",)
 router.delete("/delete-review/:reviewId",userAuth,deleteReview)
 router.get("get-avg-rating/:movieId",userAuth,getAverageRating)
 

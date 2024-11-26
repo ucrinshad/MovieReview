@@ -1,17 +1,19 @@
-import e from "express";
-
-const router = e.Router();
-
-router.post('/signup', )
-router.post('/login', )
-router.put('/reset-password')
-router.put('/logout')
-router.get('/profile', )
-router.put('/profile-update')
-router.delete('/delete-account', )
+import express from "express";
 
 
-router.get('/check-user', )
+import { addActor, deleteActor, getActorsList, updateActor } from "../controllers/actorController.js";
+import { adminAuth } from "../middlewares/adminAuth.js";
+
+
+const router = express.Router()
+
+router.post('/actorsList',  getActorsList)
+router.post('/add', adminAuth,addActor)
+router.put('/update/:id', adminAuth,updateActor)
+
+router.get('/delete',adminAuth, deleteActor )
+
+
 
 
 export { router as actorRouter}

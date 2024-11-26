@@ -1,6 +1,7 @@
 import e from "express";
-import { checkUser, userLogin, userLogout, userProfile, userSignup } from "../controllers/userController.js";
+import { checkUser, deleteUser, updateUser, userLogin, userLogout, userProfile, userSignup } from "../controllers/userController.js";
 import { userAuth } from "../middlewares/userAuth.js";
+import { adminAuth } from "../middlewares/adminAuth.js";
 
 const router = e.Router();
 
@@ -9,8 +10,8 @@ router.post('/login', userLogin)
 router.put('/reset-password')
 router.put('/logout',userAuth, userLogout)
 router.get('/profile',userAuth, userProfile )
-router.put('/profile-update')
-router.delete('/delete-account', )
+router.put('/profile-update/:id',userAuth,updateUser)
+router.delete('/delete-account/:id',deleteUser )
 
 
 router.get('/check-user',userAuth,checkUser )

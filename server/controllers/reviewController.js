@@ -16,13 +16,13 @@ export const addreview = async(req,res)=>{
         }
 
         //create  or update the review
-        const review = await Review.findByIdAndUpdate(
+        const review = await Review.findOneAndUpdate(
             {userId, movieId},
             {rating, comment},
             {new:true, upsert:true}
         );
         //optionally , you can update the movie's average rating here
-        res.status(201).json(review);
+        res.status(201).json({message:"review created successfully", data:review});
     }catch(error){
         res.status(500).json({message:"internal server error", error})
     }
@@ -34,13 +34,31 @@ export const getMovieReviews = async(req,res)=>{
 
         const reviews = await Review.find({movieId})
         .populate("userId", "name")
-        .sort({createdAt: -1});
+        .sort({createdAt: -1}); //for latest review
 
         if(!reviews.length){
             return res.status(404).json({message:"no reviews found for this movie"})
         }
 
-        res.status(200).json({message: "review deleted successfully"})
+        res.status(200).json({message: "review created successfully"})
+    }catch(error){
+        res.status(500).json({message:"internal server error", error})
+    }
+}
+
+export const getUserReviews = async(req,res)=>{
+    try{
+        const{ movieId} = req.params;
+
+        const reviews = await Review.find({movieId})
+        .populate("userId", "name")
+        .sort({createdAt: -1}); //for latest review
+
+        if(!reviews.length){
+            return res.status(404).json({message:"no reviews found for this movie"})
+        }
+
+        res.status(200).json({message: "review created successfully"})
     }catch(error){
         res.status(500).json({message:"internal server error", error})
     }
@@ -49,7 +67,7 @@ export const getMovieReviews = async(req,res)=>{
 export const deleteReview = async(req,res)=>{
     try{
         const {reviewId} = req.params;
-        const userId = req.user._id
+        const userId = req.user.id
 
         const review = await Review.findOneAndDelete({_id:reviewId ,userId });
 
@@ -79,3 +97,25 @@ export const getAverageRating = async(req,res) =>{
         res.status(500).json({message:"internal server error",error});
     }
 }
+
+export const searchMovies = async (req, res) => {
+    try {
+        const { movieId } = req.params;
+
+        // Basic search for title or genre
+        const movies = await Movie.find({
+            $or: [
+                { title: { $regex: query, $options: "i" } }, // Case-insensitive search
+                { genre: { $regex: query, $options: "i" } }
+            ]
+        });
+
+        if (!movies.length) {
+            return res.status(404).json({ message: "No movies found" });
+        }
+
+        res.status(200).json({ message: "Movies found", data: movies });
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error", error });
+    }
+};

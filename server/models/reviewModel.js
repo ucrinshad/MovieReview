@@ -2,12 +2,12 @@ import mongoose, { Schema} from "mongoose";
 
 const reviewSchema = new Schema({
     userId:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"user",
         required:true,
     },
     movieId:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"movie",
         required:true,
     },
@@ -22,10 +22,12 @@ const reviewSchema = new Schema({
         trim:true,
         maxlength:500
     },
-    created:{
+    createdAt:{
         type:Date,
-        default:Date.now,
-    },
-})
+        default:Date.now
+    }
+    
+},
+)
 
 export const Review = mongoose.model("Review", reviewSchema)

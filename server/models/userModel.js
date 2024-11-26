@@ -19,8 +19,11 @@ const userSchema = new mongoose.Schema({
     profilePic:{
         type:String,
         default:"https://st4.depositphotos.com/20523356/22445/v/450/depositphotos_224458104-stock-illustration-flat-user-icon-website-face.jpg"
+    },
+    isActive:{
+        type:Boolean,
+        default:true
     }
-
   },
 {timestamps:true}
 );

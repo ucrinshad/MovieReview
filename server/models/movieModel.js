@@ -25,7 +25,22 @@ const movieSchema = new mongoose.Schema(
             type:String,
             default:"https://i.pinimg.com/736x/aa/f7/05/aaf705e06726ce3881288ae4be3ac5fe.jpg"
         },
+        releaseDate:{
+            type:String,
+            required:true
+        },
         admin:{ type: mongoose.Types.ObjectId, ref: "Admin"},
+        genres: [{ type: mongoose.Types.ObjectId, ref: "genre"}],
+        writer: {
+            type:String,
+            required:true
+        },
+        director:{
+            type:String,
+            required:true
+        },
+        cast: [{ type: mongoose.Types.ObjectId, ref: "cast"}]
+    
     },
     {timestamps: true}
 );
