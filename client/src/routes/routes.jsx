@@ -8,11 +8,13 @@ import { Signup } from "../pages/shared/Signup";
 import { Login } from "../pages/shared/Login";
 import { UserLayout } from "../layout/UserLayout";
 import { Moviespage } from "../pages/user/MoviesPage";
+import { ErrorPage } from "../pages/shared/errorPage";
 
 export const router = createBrowserRouter([
     {
         path:"/",
         element:<UserLayout/>,
+        errorElement:<ErrorPage/>,
         children:[
             {
                 path:"",
@@ -40,11 +42,11 @@ export const router = createBrowserRouter([
                 element:<Contact/>,
             },
             {
-                path:"moviespage",
+                path:"movies",
                 element:<Moviespage/>,
             },
             {
-                path:"moviedetailspage/:id",
+                path:"movies/movieDetails/:id",
                 element:<MovieDetailsPage/>,
             },
             {

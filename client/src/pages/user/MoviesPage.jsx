@@ -1,5 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { axiosIstance } from "../../.config/axiosInstance";
+import { MovieCard } from "../../components/user/card";
+import { MovieSkelton } from "../../components/user/Skelton";
+import { UseFetch } from "../../hooks/UseFetch";
 
 export const Moviespage = ()=> {
-    return <div>Movie</div>;
+    
+    const [movies,isLoading,error]= UseFetch('/movie/get-all-movies')
+
+    return (<div>
+        {isLoading?(
+        <MovieSkelton/>
+        ):(
+            <>
+            {movies?.map((value)=>(
+                <MovieCard key={value._id} movie={value}/>
+            ))}
+            </>
+        )}
+            
+
+    </div>
+    )
 };
