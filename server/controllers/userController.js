@@ -89,7 +89,7 @@ export const userProfile = async(req,res,next) =>{
         const userProfile = await User.findById(userId).select("-password")
 
 
-        res.json({message:'user login successfully',data:userProfile})
+        res.json({message:'user Profile',data:userProfile})
 
         
     } catch (error) {

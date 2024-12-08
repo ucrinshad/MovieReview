@@ -6,46 +6,47 @@ import { UserHeader } from "../components/user/UserHeader";
 import { axiosIstance } from "../.config/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserData, saveUserData } from "../redux/features/userSlice";
+import { AdminHeader } from "../components/admin/AdminHeader";
 
-export const UserLayout = () => {
+export const AdminLayout = () => {
 
-    const {isUserAuth,userData} = useSelector((state)=>state.user);
+    const {isAdminAuth,adminData} = useSelector((state)=>state.user);
     const dispatch = useDispatch();
     const location = useLocation();
     
     
 
 
-    const checkUser = async()=> {
+    const checkAdmin = async()=> {
         try {
             const response = await axiosIstance({
                 method:"GET",
-                url:"/user/check-user"
+                url:"/admin/check-adimn"
             })
 
-            dispatch(saveUserData());
-            console.log(response, '=====checkuser response');
+            dispatch(saveAdminData());
+            console.log(response, '=====checkadmin response');
             
         } catch (error) {
-            dispatch(clearUserData());
+            dispatch(clearAdminData());
             console.log(error);
-            console.log(error, '=====checkuser error response');
+            console.log(error, '=====checkadmin error response');
         }
     }
 
-    console.log(isUserAuth, 'isUserAuth');
+    console.log(isAdminAuth, 'isAdminAuth');
     
-    console.log(userData, 'userData');
+    console.log(adminData, 'adminData');
     
 
     useEffect(() =>{
-        checkUser()
+        checkAdmin()
     },[location.pathname])
 
 
     return (
         <div>
-            {isUserAuth? <UserHeader/> : <Header />
+            {isAdminAuth? <AdminHeader/> : <Header />
         }
             
             <div className="min-h-96"><Outlet/></div>
