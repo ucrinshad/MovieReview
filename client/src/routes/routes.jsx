@@ -8,7 +8,7 @@ import { MovieDetailsPage } from "../pages/user/MovieDetailsPage";
 import { Login } from "../pages/shared/Login";
 import { UserLayout } from "../layout/UserLayout";
 import { Moviespage } from "../pages/user/MoviesPage";
-import { ErrorPage } from "../pages/shared/errorPage";
+import { ErrorPage } from "../pages/shared/ErrorPage";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { ProfilePage } from "../pages/shared/ProfilePage";
 import { AdminLayout } from "../layout/AdminLayout";
