@@ -6,7 +6,7 @@ import { NewMovies } from "../pages/user/NewMovies";
 import { MovieDetailsPage } from "../pages/user/MovieDetailsPage";
 
 import { Login } from "../pages/shared/Login";
-import { UserLayout } from "../layout/userLayout";
+import { UserLayout } from "../layout/UserLayout";
 import { Moviespage } from "../pages/user/MoviesPage";
 import { ErrorPage } from "../pages/shared/errorPage";
 import { ProtectedRoutes } from "./ProtectedRoutes";
