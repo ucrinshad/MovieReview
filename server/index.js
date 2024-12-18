@@ -3,18 +3,16 @@ import { connectDB } from './config/db.js';
 import { apiRouter } from './routes/index.js';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
-import corsOptions from "cors";
 
 const app = express();
 app.use(express.json());
-app.use(corsOptions({
-    origin: ["http://localhost:5173","http://localhost:5174","https://moviereview-clientnew.vercel.app"],
+app.use(cors({
+    origin: ["https://moviereview-clientnew.vercel.app","http://localhost:5173","http://localhost:5174",],
     credentials:true,
     methods: ["GET","POST","PUT","DELETE"]
   })
 );
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+
 
 app.use(cookieParser())
 connectDB()
