@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/** FORM**/
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 2rem;
+  }
+  
+  form input{
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  
+  form span{
+    color: red;
+  }

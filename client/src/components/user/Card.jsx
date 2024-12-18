@@ -18,3 +18,19 @@ export const MovieCard = ({movie}) =>{
 
     )
 }
+
+
+export const WishlistCards = ({ item }) => {
+    return (
+        <div className="flex w-full h-32 items-center gap-20 bg-base-300 mb-10 rounded-md">
+            <div>
+                <h2>{item?.title}</h2>
+                <img src={item?.image} alt="movieIMG" className="w-24 h-20" />
+            </div>
+
+            <button className="btn btn-secondary">Remove</button>
+        </div>
+    );
+};
+
+

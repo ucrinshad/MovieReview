@@ -7,10 +7,14 @@ import { axiosIstance } from "../.config/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserData, saveUserData } from "../redux/features/userSlice";
 import { AdminHeader } from "../components/admin/AdminHeader";
+import { AdminFooter } from "../components/admin/AdminFooter";
+import { Sidebar } from "../components/admin/Sidebar";
+import { clearAdminData, saveAdminData } from "../redux/features/adminSlice";
 
 export const AdminLayout = () => {
+//const [isAdminAuth,setIsAdminAuth]=useState(true)
 
-    const {isAdminAuth,adminData} = useSelector((state)=>state.user);
+const {isAdminAuth,adminData} = useSelector((state)=>state.admin);
     const dispatch = useDispatch();
     const location = useLocation();
     
@@ -21,37 +25,39 @@ export const AdminLayout = () => {
         try {
             const response = await axiosIstance({
                 method:"GET",
-                url:"/admin/check-adimn"
+                url:"/admin/check-admin"
             })
 
             dispatch(saveAdminData());
-            console.log(response, '=====checkadmin response');
+            console.log(response, '=====checkuser response');
             
         } catch (error) {
             dispatch(clearAdminData());
             console.log(error);
-            console.log(error, '=====checkadmin error response');
+            console.log(error, '=====checkuser error response');
         }
     }
-
-    console.log(isAdminAuth, 'isAdminAuth');
-    
-    console.log(adminData, 'adminData');
-    
 
     useEffect(() =>{
         checkAdmin()
     },[location.pathname])
-
-
     return (
-        <div>
-            {isAdminAuth? <AdminHeader/> : <Header />
-        }
+        <div className="flex flex-row min-h-dvh ">
+            {isAdminAuth && (
+            <div className="w-2/12 shadow-xl">
+                <Sidebar />
+            </div> 
+        )}
+            <div className="w-full">
+            <AdminHeader/>
+            <div className="min-h-96">
+            <Outlet />
+            </div>
             
-            <div className="min-h-96"><Outlet/></div>
+            <AdminFooter/>
+            </div>
             
-            <Footer />
         </div>
     )
+       
 };

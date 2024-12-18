@@ -13,6 +13,7 @@ export default {
   plugins: [
     daisyui,
   ],
+  darkMode: ['selector', '[data-theme="dark"]'],
   daisyui: {
     themes:["light","dark"],
   },

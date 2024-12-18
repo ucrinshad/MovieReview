@@ -10,9 +10,12 @@ import { UserLayout } from "../layout/userLayout";
 import { Moviespage } from "../pages/user/MoviesPage";
 import { ErrorPage } from "../pages/shared/errorPage";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import { ProfilePage } from "../pages/user/profilePage";
+import { ProfilePage } from "../pages/shared/ProfilePage";
 import { AdminLayout } from "../layout/AdminLayout";
-import Signup from "../pages/shared/Signup";
+import { Signup } from "../pages/shared/Signup";
+import { Wishlist } from "../pages/user/Wishlist";
+import { ProtectedRoutesAdmin } from "./ProtectedRoutesAdmin";
+
 
 
 
@@ -65,8 +68,9 @@ export const router = createBrowserRouter([
                     },
                     {
                         path:"wishlist",
-                        element:<h1>wishlist</h1>
-                    }
+                        element:<Wishlist />
+                    },
+                    
                 ]
             }
             
@@ -75,7 +79,7 @@ export const router = createBrowserRouter([
     {
         path:"/admin",
         element:<AdminLayout/>,
-        errorElement:<ErrorPage/>,
+        errorElement:<ErrorPage role="admin"/>,
         children:[
             {
                 path:"",
@@ -89,39 +93,36 @@ export const router = createBrowserRouter([
                 path:"login",
                 element:<Login role="admin"/>,
             },
-            
-            {
-                path:"about",
-                element:<About/>,
-            },
-            {
-                path:"newmovies",
-                element:<NewMovies/>,
-            },
-            {
-                path:"contact",
-                element:<Contact/>,
-            },
             {
                 path:"movies",
                 element:<Moviespage/>,
             },
+            
+            
+            {
+                path:"user-data",
+                //element:
+            },
+            
             {
                 path:"movies/movieDetails/:id",
                 element:<MovieDetailsPage/>,
             },
             {
-                element:<ProtectedRoutes/>,
-                path:"admin",
+                element:<ProtectedRoutesAdmin/>,
+                
                 children:[
                     {
                         path:"profile",
-                        element:<ProfilePage />
+                        element:<ProfilePage role="admin"/>
                     },
                     {
-                        path:"wishlist",
-                        element:<h1>wishlist</h1>
-                    }
+                        path:"create-movies"
+                    },
+                    {
+                        path:"user-data"
+                    },
+
                 ]
             }
             

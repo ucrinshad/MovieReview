@@ -14,7 +14,7 @@ export const UserHeader = () => {
                 <Link to={"/"}>Home</Link>
                 <Link to={"/about"}>About</Link>
                 <Link to={"/movies"}>Movies</Link>
-                <Link to={"/mymovies"}>MyMovies</Link>
+                <Link to={"/user/wishlist"}>Wishlist</Link>
             </ul>
         </nav>
         
