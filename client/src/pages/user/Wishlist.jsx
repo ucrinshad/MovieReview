@@ -1,6 +1,6 @@
 import React from "react";
 import { UseFetch } from "../../hooks/UseFetch";
-import { WishlistCards } from "../../components/user/card";
+import { WishlistCards } from "../../components/user/Card";
 
 export const Wishlist = () => {
     const [wishlistDetails, isLoading, error] = UseFetch("/wishlist/get-wishlist");
