@@ -13,15 +13,15 @@ export const adminSignup = async (req, res, next) => {
             return res.status(400).json({ message: "all fields required" });
         }
 
-        const adminExist = await Admin.findOne({ email: email });
+        const userExist = await Admin.findOne({ email: email });
 
-        if (adminExist) {
-            return res.status(400).json({ message: "mentor already exist" });
+        if (userExist) {
+            return res.status(400).json({ message: "admin already exist" });
         }
 
         const hashedPassword = bcrypt.hashSync(password, 10);
 
-        const newUser = new Admin({ name, email, password: hashedPassword, mobile, profilePic });
+        const newUser = new Admin({ name, email, password: hashedPassword, profilePic });
         await newUser.save();
 
         const token = generateToken(newUser, "admin");
@@ -45,9 +45,9 @@ export const adminLogin = async (req, res, next) => {
             return res.status(400).json({ message: "all fields required" });
         }
 
-        const adminExist = await Admin.findOne({ email: email });
+        const userExist = await Admin.findOne({ email: email });
 
-        if (!adminExist) {
+        if (!userExist) {
             return res.status(400).json({ message: "admin does not exist" });
         }
 
