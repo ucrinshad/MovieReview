@@ -30,7 +30,11 @@ export const adminSignup = async(req,res,next) =>{
 
         const token= generateToken(newUser,'admin')
 
-        res.cookie('token', token);
+        res.cookie('token', token,{
+            sameSite:"none",
+            secure:true,
+            httpOnly:true,
+        });
 
 
         res.json({message:'admin created successfully'})
@@ -70,7 +74,11 @@ export const adminLogin = async(req,res,next) =>{
         const token= generateToken(userExist,'admin')
         console.log('token generated====',token)
 
-        res.cookie('token', token);
+        res.cookie('token', token,{
+            sameSite:"none",
+            secure:true,
+            httpOnly:true,
+        });
 
 
         res.json({message:'admin login successfully'})
@@ -98,7 +106,11 @@ export const adminProfile = async(req,res,next) =>{
 
 export const adminLogout = async(req,res,next) =>{
     try {
-        res.cookie('token');
+        res.clearCookie('token' ,{
+            sameSite:"none",
+            secure:true,
+            httpOnly:true,
+        });
 
         res.json({message: "admin logout successfully", data:adminProfile})
 
