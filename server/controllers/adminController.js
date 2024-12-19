@@ -30,8 +30,8 @@ export const adminSignup = async(req,res,next) =>{
 
         const token= generateToken(newUser,'admin')
 
-        res.cookie('token', token,{
-            sameSite:"none",
+        res.cookie("token", token,{
+            sameSite:"None",
             secure:true,
             httpOnly:true,
         });
@@ -74,8 +74,8 @@ export const adminLogin = async(req,res,next) =>{
         const token= generateToken(userExist,'admin')
         console.log('token generated====',token)
 
-        res.cookie('token', token,{
-            sameSite:"none",
+        res.cookie("token", token,{
+            sameSite:"None",
             secure:true,
             httpOnly:true,
         });
@@ -106,8 +106,8 @@ export const adminProfile = async(req,res,next) =>{
 
 export const adminLogout = async(req,res,next) =>{
     try {
-        res.clearCookie('token' ,{
-            sameSite:"none",
+        res.clearCookie("token" ,{
+            sameSite:"None",
             secure:true,
             httpOnly:true,
         });
@@ -137,7 +137,7 @@ export const updateAdmin = async(req, res, next)=>{
     try {
         
 
-        const updatedAdmin = await User.findByIdAndUpdate(req.params.id, req.body,{ new: true});
+        const updatedAdmin = await Admin.findByIdAndUpdate(req.params.id, req.body,{ new: true});
         
         if(updateAdmin){
             res.status(200).json(updatedAdmin);
@@ -151,7 +151,7 @@ export const updateAdmin = async(req, res, next)=>{
 export const deleteAdmin = async(req,res,next)=>{
 
     try {
-        const deletedAdmin = await User.findByIdAndDelete(req.params.id);
+        const deletedAdmin = await Admin.findByIdAndDelete(req.params.id);
 
         if(deletedAdmin) {
             res.status(200).json({ message: "asmin deleted successfully"})
