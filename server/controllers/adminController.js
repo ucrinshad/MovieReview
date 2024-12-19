@@ -13,9 +13,9 @@ export const adminSignup = async (req, res, next) => {
             return res.status(400).json({ message: "all fields required" });
         }
 
-        const userExist = await Admin.findOne({ email: email });
+        const adminExist = await Admin.findOne({ email: email });
 
-        if (userExist) {
+        if (adminExist) {
             return res.status(400).json({ message: "mentor already exist" });
         }
 
@@ -45,9 +45,9 @@ export const adminLogin = async (req, res, next) => {
             return res.status(400).json({ message: "all fields required" });
         }
 
-        const userExist = await Admin.findOne({ email: email });
+        const adminExist = await Admin.findOne({ email: email });
 
-        if (!userExist) {
+        if (!adminExist) {
             return res.status(400).json({ message: "admin does not exist" });
         }
 
