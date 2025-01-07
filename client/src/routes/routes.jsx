@@ -15,6 +15,8 @@ import { AdminLayout } from "../layout/AdminLayout";
 import { Signup } from "../pages/shared/Signup";
 import { Wishlist } from "../pages/user/Wishlist";
 import { ProtectedRoutesAdmin } from "./ProtectedRoutesAdmin";
+import { AddMovie } from "../pages/admin/AddMovie";
+import { UsersList } from "../pages/admin/UsersList";
 
 
 
@@ -100,8 +102,8 @@ export const router = createBrowserRouter([
             
             
             {
-                path:"user-data",
-                //element:
+                path:"users-list",
+                element:<UsersList />
             },
             
             {
@@ -117,11 +119,10 @@ export const router = createBrowserRouter([
                         element:<ProfilePage role="admin"/>
                     },
                     {
-                        path:"create-movies"
+                        path:"add-movie",
+                        element:<AddMovie role="admin"/>
                     },
-                    {
-                        path:"user-data"
-                    },
+                    
 
                 ]
             }

@@ -23,14 +23,14 @@ export const getMovieDetails = async (req, res, next) => {
     }
 };
 
-export const createMovie = async (req, res, next) => {
+export const addMovie = async (req, res, next) => {
     try {
-        const { title, description, duration,releaseDate, image, admin,genres,writer,director,cast } = req.body;
+        const { title, description, duration, image, admin,genres,cast } = req.body;
 
         const adminId = req.user.id;
         
 
-        if (!title || !description|| !duration ||!director) {
+        if (!title || !description|| !duration ) {
             return res.status(400).json({ message: "all fields required" });
         }
 
@@ -40,7 +40,7 @@ export const createMovie = async (req, res, next) => {
         
         
 
-        const movieData = new Movie({ title, description,genres,releaseDate, duration,writer, director, image:imageUrl, admin:adminId });
+        const movieData = new Movie({ title, description, duration, image, genres,cast, image:imageUrl, admin:adminId });
         await movieData.save();
 
         return res.json({ message: "movie data fetched", data: movieData });

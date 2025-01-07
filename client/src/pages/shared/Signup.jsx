@@ -82,7 +82,10 @@ export const Signup = ({ role = "user"})=> {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <Link to={"/"}>
+          <button className="btn btn-primary">Sign up</button>
+          </Link>
+          
         </div>
       </form>
     </div>

@@ -48,13 +48,13 @@ export const adminLogin = async (req, res, next) => {
         const userExist = await Admin.findOne({ email: email });
 
         if (!userExist) {
-            return res.status(400).json({ message: "admin does not exist" });
+            return res.status(401).json({ message: "Invalid email or password" });
         }
 
-        const isPasswordMatch = bcrypt.compareSync(password, userExist.password);
+        const isPasswordMatch = await bcrypt.compare(password, userExist.password);
 
         if (!isPasswordMatch) {
-            return res.status(400).json({ message: "admin not authenticated" });
+            return res.status(401).json({ message: "admin not authenticated" });
         }
 
         const token = generateToken(userExist, "admin");

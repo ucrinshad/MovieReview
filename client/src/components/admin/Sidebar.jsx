@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(true); // State to manage sidebar visibility
@@ -25,18 +26,18 @@ export const Sidebar = () => {
                     </div>
                     <div>
                         <ul className="flex flex-col gap-2 px-2 my-7">
-                            <li className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer">
+                            <Link className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer" to={"/admin/movies"}>
                                 Movies
-                            </li>
-                            <li className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer">
-                                Create Movies
-                            </li>
-                            <li className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer">
+                            </Link>
+                            <Link className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer" to={"/admin/add-movie"}>
+                                Add-Movie
+                            </Link>
+                            <Link className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer" to={"/admin/profile"}>
                                 Profile
-                            </li>
-                            <li className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer">
+                            </Link>
+                            <Link className="dark:hover:bg-slate-800 hover:bg-indigo-300 px-3 py-2 rounded-lg cursor-pointer" to={"/admin/users-list"}>
                                 User Details
-                            </li>
+                            </Link>
                         </ul>
                     </div>
                 </div>

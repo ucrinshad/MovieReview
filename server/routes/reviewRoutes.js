@@ -1,9 +1,10 @@
 import e from "express";
 import { userAuth } from "../middlewares/userAuth.js";
-import { addreview, deleteReview, getAverageRating, getMovieReviews } from "../controllers/reviewController.js";
+import { addreview, deleteReview, getAllReviews, getAverageRating, getMovieReviews } from "../controllers/reviewController.js";
 
 const router = e.Router();
 
+router.post("/get-all-review", userAuth,getAllReviews)
 router.post("/add-review", userAuth,addreview)
 router.get("/get-movie-review", userAuth,getMovieReviews )
 router.get("/get-user-review",)

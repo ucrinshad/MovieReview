@@ -1,6 +1,17 @@
 import { Movie } from "../models/movieModel.js";
 import { Review } from "../models/reviewModel.js";
 
+
+export const getAllReviews = async (req, res, next) => {
+    try {
+        const reviewList = await Review.find();
+
+        res.json({ message: "review-list fetched", data: reviewList });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ message: error.message || "Internal server error" });
+    }
+};
+
 export const addreview = async(req,res)=>{
     try{
         const {movieId,rating,comment} = req.body;

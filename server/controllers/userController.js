@@ -151,3 +151,13 @@ export const deleteUser = async(req,res,next)=>{
         res.status(500).json({message: error.message});
     }
 }
+export const getUsersList = async (req, res, next) => {
+    try {
+        const usersList = await User.find();  // Fetch the users list
+        res.status(200).json(usersList);      // Return 200 OK with the users list
+    } catch (error) {
+        // Log the error for debugging purposes
+        console.error('Error fetching users:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });  // Return a 500 status code on error
+    }
+};

@@ -9,7 +9,7 @@ export const getActorsList = async(req, res, next)=>{
 
     try {
         const Actors = await Actor.findOne();
-        res.status(200).jsoon(Actors)
+        res.status(200).json(Actors)
     } catch (error) {
         res.status(200).json({error: error.message});
     }
